@@ -9,11 +9,22 @@ import { useNavigate } from 'react-router-dom';
 import { Person } from '@mui/icons-material';
 import Profile from '../Profile/Profile';
 import { useState,useEffect } from 'react';
+import { useSelector } from 'react-redux';
 
 
 export const Navbar = () => {
+  const {auth}=useSelector(store=>store)
   const navigate=useNavigate()
   const [isUser,setUser]=useState(false)
+  const handleAvatarClick=()=>{
+    if(auth.user?.role==="ROLE_CUSTOMER")
+    {
+      navigate("/my-profile")
+    }
+    else{
+      navigate("/admin/restaurant")
+    }
+  }
   useEffect(()=>{
     if(isUser)
     {
@@ -32,7 +43,7 @@ export const Navbar = () => {
     
        <div className='lg:mr-10 cursor-pointer flex items-center
         space-x-4'>
-          <li className='logo font-semibold text-gray-300 text-2x1'>
+          <li onClick={()=>navigate("/")} className='logo font-semibold text-gray-300 text-2x1'>
             <i>FoodSphere</i>
 
           </li>
@@ -50,14 +61,17 @@ export const Navbar = () => {
           
           <div className=''>
 
-          {false?<Avatar sx={{ bgcolor: "white", color: pink.A400}}>J</Avatar>:
+          {auth.user? (
+          <Avatar onClick={handleAvatarClick} sx={{ bgcolor: "white", color: pink.A400}}>{auth.user?.fullName[0].toUppercase()}
+          </Avatar>
+          ) :(
           <IconButton onClick={()=>
           // navigate("/account/login")
           setUser(!isUser)
           
            }>
             <Person/>
-          </IconButton>}
+          </IconButton>)}
           </div>
           <div className=''> 
            
