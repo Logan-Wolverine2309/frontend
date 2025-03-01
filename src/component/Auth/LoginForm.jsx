@@ -9,7 +9,7 @@ const intialvalues={
     email:"",
     password:""
 }
-const LoginForm = () => {
+export const LoginForm = () => {
     const navigate=useNavigate()
     const dispatch=useDispatch()
 

@@ -1,7 +1,6 @@
-import axios from "axios"
-import {  API_URL } from "../../config/api"
-import { ADD_TO_FAVOURITE_FAILURE, ADD_TO_FAVOURITE_REQUEST, ADD_TO_FAVOURITE_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType"
-import { Api } from "@mui/icons-material"
+import axios from "axios";
+import { api, API_URL } from "../../config/api";
+import { ADD_TO_FAVOURITE_FAILURE, ADD_TO_FAVOURITE_REQUEST, ADD_TO_FAVOURITE_SUCCESS, GET_USER_FAILURE, GET_USER_REQUEST, GET_USER_SUCCESS, LOGIN_FAILURE, LOGIN_REQUEST, LOGIN_SUCCESS, LOGOUT, REGISTER_FAILURE, REGISTER_REQUEST, REGISTER_SUCCESS } from "./ActionType";
 
 export const registerUser=(reqData)=>async(dispatch)=>{
     dispatch({type:REGISTER_REQUEST})
@@ -53,7 +52,7 @@ export const getUser=(jwt)=>async(dispatch)=>{
     dispatch({type:GET_USER_REQUEST})
     try{
 
-       const {data}=await Api.get(`/auth/signin`,{
+       const {data}=await api.get(`/api/users/profile`,{
         headers:{
             Authorization:`Bearer ${jwt}`
         }
@@ -74,7 +73,7 @@ export const addToFavorites=({jwt,restaurantId})=>async(dispatch)=>{
     dispatch({type:ADD_TO_FAVOURITE_REQUEST})
     try{
 
-       const {data}=await Api.put(`/api/restaurants/${restaurantId}/add-favourite`,{},{
+       const {data}=await api.put(`/api/restaurants/${restaurantId}/add-favourite`,{},{
         headers:{
             Authorization:`Bearer ${jwt}`
         }
@@ -94,7 +93,6 @@ export const logout=()=>async(dispatch)=>{
    
     try{
 
-      
         localStorage.clear();
         dispatch({type:LOGOUT})
        console.log("logout success")

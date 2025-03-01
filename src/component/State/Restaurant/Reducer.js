@@ -43,7 +43,7 @@ const restaurantreducer = (state = initialState, action) => {
                 loading: false,
                 restaurant: action.payload,
             };
-            case actionTypes.GET_RESTAURANT_BY_ID_SUCCESS:
+            case actionTypes.GET_RESTAURANT_BY_USER_ID_SUCCESS:
                 case actionTypes.UPDATE_RESTAURANT_STATUS_SUCCESS:
                     case actionTypes.UPDATE_RESTAURANT_SUCCESS:
                         return {
@@ -56,7 +56,8 @@ const restaurantreducer = (state = initialState, action) => {
                             ...state,
                             error:null,
                             loading: false,
-                            restaurant:state.restaurant.filter((item)=>item.id!==action.payload),
+                            restaurant: state.restaurant.filter((item)=>item.id!==action.payload),
+                            usersRestaurant: state.usersRestaurant.filter((item)=>item.id!==action.payload),
                         };
                         case actionTypes.CREATE_EVENT_SUCCESS:
                         return {

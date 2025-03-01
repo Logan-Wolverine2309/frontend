@@ -12,8 +12,8 @@ const intialvalues={
   role:"ROLE_CUSTOMER",
 };
 
-const RegisterForm = () => {
-  const navigate=useNavigate()
+export const RegisterForm = () => {
+  const navigate=useNavigate();
   const dispatch=useDispatch()
 
   const handleSubmit=(values)=>{

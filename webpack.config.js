@@ -9,15 +9,19 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(js|jsx)$/, // Match both .js and .jsx files
-        exclude: /node_modules/, // Don't process files in node_modules
-        use: {
-          loader: 'babel-loader', // Use babel-loader for these files
-        },
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ['source-map-loader'],
+        enforce: 'pre',
       },
     ],
   },
+  devtool: 'source-map',
+  mode: 'development',
   resolve: {
-    extensions: ['.js', '.jsx'], // Automatically resolve these file extensions
+    extensions: ['.js', '.jsx'],
+  },
+  devServer: {
+    contentBase: './dist',
   },
 };

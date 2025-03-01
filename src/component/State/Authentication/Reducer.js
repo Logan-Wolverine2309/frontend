@@ -26,9 +26,9 @@ export const authReducer = (state = initialState, action) => {
                 error:null,
                 success:null
             };
-
+        
+         case REGISTER_SUCCESS:
         case LOGIN_SUCCESS:
-        case REGISTER_SUCCESS:
             return {
                 ...state,
                 isLoading:false,
@@ -42,29 +42,17 @@ export const authReducer = (state = initialState, action) => {
                     isLoading:false,
                     user:action.payload,
                 };
+
         case ADD_TO_FAVOURITE_SUCCESS:
             return {
                 ...state,
                 isLoading:false,
                 error:null,
-                favorites:isPresentInFavourites(state.favorites,action.payload) ? 
-                state.favorites.filter(item=>item._id !== action.payload._id) : [...state.favorites,action.payload]
+                favorites:isPresentInFavourites(state.favorites,action.payload)  
+                ? state.favorites.filter((item)=>item.id !== action.payload.id) : [...state.favorites,action.payload]
             };
-            case LOGOUT:
-                return initialState;
-            case REGISTER_FAILURE:
-                case LOGIN_FAILURE:
-                case GET_USER_FAILURE:
-                case ADD_TO_FAVOURITE_FAILURE:
-                        
-                    return {
-                        ...state,
-                        isLoading:false,
-                        error:action.payload,
-                        success:null
-                    };
 
-                    case REGISTER_FAILURE:
+                      case REGISTER_FAILURE:
                         case LOGIN_FAILURE:
                         case GET_USER_FAILURE:
                         case ADD_TO_FAVOURITE_FAILURE:
@@ -72,9 +60,23 @@ export const authReducer = (state = initialState, action) => {
                             return {
                                 ...state,
                                 isLoading:true,
-                                error:null,
+                                error:action.payload,
                                 success:null
                             };
+
+                            case LOGOUT:
+                                return initialState;
+                            case REGISTER_FAILURE:
+                                case LOGIN_FAILURE:
+                                case GET_USER_FAILURE:
+                                case ADD_TO_FAVOURITE_FAILURE:
+                                        
+                                    return {
+                                        ...state,
+                                        isLoading:false,
+                                        error:action.payload,
+                                        success:null
+                                    };
         default:
             return state;
     }
