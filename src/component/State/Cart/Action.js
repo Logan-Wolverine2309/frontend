@@ -18,7 +18,7 @@ export const findCart =(Token)=>{
             dispatch({type:FIND_CART_FAILURE,payload:error});
             console.log("error",error);
         }
-    }}
+    }};
     
     export const getAllCartItem=(Token)=>{
         return async(dispatch)=>{
@@ -36,17 +36,17 @@ export const findCart =(Token)=>{
                 dispatch({type:GET_ALL_CART_ITEM_FAILURE,payload:error});
                 console.log("error",error);
             }
-        }}
+        }};
         
         export const addItemToCart=({Token,itemId,quantity})=>{
             return async(dispatch)=>{
                 dispatch({type:ADD_ITEM_TO_CART_REQUEST});
                 try{
-                    const {data} = await api.post(`/cart/item/${itemId}`,{
+                    const {data} = await api.post(`/api/cart/add/${itemId}`,{
                         quantity
                     },{
                         headers:{
-                            Authorizartion:`Bearer ${Token}`
+                            Authorizartion:`Bearer ${reqData.Token}`
                 },
             });
             dispatch({type:ADD_ITEM_TO_CART_SUCCESS,payload:data});
@@ -62,11 +62,11 @@ export const findCart =(Token)=>{
                 return async(dispatch)=>{
                     dispatch({type:UPDATE_CART_ITEM_REQUEST});
                     try{
-                        const {data} = await api.put(`/cart/item/${itemId}`,{
+                        const {data} = await api.put(`/api/cart/item/update${itemId}`,{
                             quantity
                         },{
                             headers:{
-                                Authorizartion:`Bearer ${Token}`
+                                Authorizartion:`Bearer ${reqData.jwt}`
                     },
                 });
                 dispatch({type:UPDATE_CART_ITEM_SUCCESS,payload:data});
@@ -78,4 +78,40 @@ export const findCart =(Token)=>{
                     }
                 }}
                 
-            
+            export const removeCartItem=({jwt,itemId})=>{
+                return async(dispatch)=>{
+                    dispatch({type:REMOVE_CART_ITEM_REQUEST});
+                    try{
+                        const {data} = await api.delete(`/api/cart/item/remove/${itemId}`,{
+                            headers:{
+                                Authorizartion:`Bearer ${jwt}`
+                        },
+                    });
+                    dispatch({type:REMOVE_CART_ITEM_SUCCESS,payload:data});
+                    console.log("remove cart item",data);
+                    } catch(error){
+                        console.log("catch error",error);
+                        dispatch({type:REMOVE_CART_ITEM_FAILURE,payload:error});
+                        console.log("error",error);
+                    }
+                }};
+
+                export const clearCartAction=({jwt})=>{
+                    return async(dispatch)=>{
+                        dispatch({type:CLEAR_CART_REQUEST});
+                        try{
+                            const {data} = await api.put(`/api/cart/clear`,{
+                                headers:{
+                                    Authorizartion:`Bearer ${localStorage.getItem("jwt")}`
+                            },
+                        });
+                        dispatch({type:CLEAR_CART_SUCCESS,payload:data});
+                        console.log("clear cart",data);
+                        } catch(error){
+                            console.log("catch error",error);
+                            dispatch({type:CLEAR_CART_FAILURE,payload:error});
+                            console.log("error",error);
+                        }
+                    }};
+
+                    
