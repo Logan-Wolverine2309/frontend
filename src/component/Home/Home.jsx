@@ -1,14 +1,25 @@
- import React from 'react'
+ import React, { useEffect } from 'react'
  import "./Home.css"
 import MultiItemCarousel from './MultiItemCorusel'
 import RestaurantCard from '../Restaurant/RestaurantCard'
 import RestaurantCard_2 from '../Restaurant/RestaurantCard_2'
 import RestaurantCard_3 from '../Restaurant/RestaurantCard_3'
 import RestaurantCard_4 from '../Restaurant/RestaurantCard_4'
+import { useDispatch, useSelector } from 'react-redux'
+import { getAllRestaurantAction } from '../State/Restaurant/Action'
 
 
  
   const Home = () => {
+    const dispatch=useDispatch()
+    const jwt=localStorage.getItem('jwt')
+    const {restaurant}=useSelector((state)=>state.restaurant)
+    console.log("restaurant",restaurant
+    )
+
+    useEffect(()=>{
+     dispatch(getAllRestaurantAction({jwt}))
+    },[])
    return (
      <div className='pb-10'>
         <section className='banner -z-50 relative flex flex-col justify-center

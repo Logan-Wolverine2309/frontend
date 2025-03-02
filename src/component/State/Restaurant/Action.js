@@ -151,7 +151,7 @@ export const updateRestaurantStatus=({restaurantId,  jwt})=>{
     return async(dispatch)=>{
         dispatch({type:UPDATE_RESTAURANT_STATUS_REQUEST});
         try{
-            const res =await api.put(`/api/admin/restaurant/${restaurantId}/status`,{},{
+            const responce =await api.put(`/api/admin/restaurant/${restaurantId}/status`,{},{
                 headers:{
                     Authorizartion:`Bearer ${jwt}`,
     },
@@ -190,14 +190,14 @@ export const getAllEvent=({jwt})=>{
     return async(dispatch)=>{
         dispatch({type:GET_ALL_EVENT_REQUEST});
         try{
-            const {responce}=await api.get(`/api/admin/event`,{
+            const {responce}=await api.get(`/api/event`,{
                 headers:{
                     Authorizartion:`Bearer ${jwt}`,
     },
 });
 console.log("get all event",responce.data);
-dispatch({type:GET_ALL_EVENT_SUCCESS,payload:data});
-console.log("all event",data);
+dispatch({type:GET_ALL_EVENT_SUCCESS,payload:responce.data});
+console.log("all event",responce.data);
         }
         catch(error){
             dispatch({type:GET_ALL_EVENT_FAILURE,payload:error});
@@ -235,8 +235,8 @@ export const getRestaurantEvent=({restaurantId, jwt})=>{
     },
 });
 console.log("get restaurant event",responce.data);
-dispatch({type:GET_RESTAURANT_EVENT_SUCCESS,payload:data});
-console.log("restaurant event",data);
+dispatch({type:GET_RESTAURANT_EVENT_SUCCESS,payload:responce.data});
+console.log("restaurant event",responce.data);
         }
         catch(error){
             dispatch({type:GET_RESTAURANT_EVENT_FAILURE,payload:error});
@@ -256,7 +256,7 @@ export const createCategoryAction=({reqData, jwt, restaurantId})=>{
 });
 console.log("create category",responce.data);
 dispatch({type:CRAETE_CATEGORY_SUCCESS,payload:responce.data});
-console.log("create category",data);
+console.log("create category",responce.data);
         }
         catch(error){
             console.log("catch -",error);
@@ -277,7 +277,7 @@ export const getRestaurantCategory=({restaurantId, jwt})=>{
 });
 console.log("get restaurant category",responce.data);
 dispatch({type:GET_RESTAURANT_CATEGORY_SUCCESS,payload:responce.data});
-console.log("restaurant category",data);
+console.log("restaurant category",responce.data);
         }
         catch(error){
             dispatch({type:GET_RESTAURANT_CATEGORY_FAILURE,payload:error});

@@ -4,10 +4,8 @@ import { Avatar, Badge, Box, IconButton } from '@mui/material';
 import { pink } from '@mui/material/colors';
 import React from 'react';
 import "./Navbar.css"
-import zIndex from '@mui/material/styles/zIndex';
 import { useNavigate } from 'react-router-dom';
 import { Person } from '@mui/icons-material';
-import Profile from '../Profile/Profile';
 import { useState,useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
