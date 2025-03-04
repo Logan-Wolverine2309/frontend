@@ -2,13 +2,13 @@
 import { api } from '../../config/api';
 import { ADD_ITEM_TO_CART_FAILURE, ADD_ITEM_TO_CART_REQUEST, ADD_ITEM_TO_CART_SUCCESS, FIND_CART_FAILURE, FIND_CART_REQUEST, FIND_CART_SUCCESS, GET_ALL_CART_ITEM_FAILURE, GET_ALL_CART_ITEM_REQUEST, GET_ALL_CART_ITEM_SUCCESS, UPDATE_CART_ITEM_FAILURE, UPDATE_CART_ITEM_REQUEST, UPDATE_CART_ITEM_SUCCESS } from './ActionTypes';
 
-export const findCart =(Token)=>{
+export const findCart =(token)=>{
     return async(dispatch)=>{
         dispatch({type:FIND_CART_REQUEST});
         try{
             const {data} = await api.get(`/cart`,{
                 headers:{
-                    Authorizartion:`Bearer ${Token}`
+                    Authorizartion:`Bearer ${token}`
             },
         });
         dispatch({type:FIND_CART_SUCCESS,payload:data});
@@ -20,13 +20,13 @@ export const findCart =(Token)=>{
         }
     }};
     
-    export const getAllCartItem=(Token)=>{
+    export const getAllCartItem=(token)=>{
         return async(dispatch)=>{
             dispatch({type:GET_ALL_CART_ITEM_REQUEST});
             try{
                 const {data} = await api.get(`/cart/items`,{
                     headers:{
-                        Authorizartion:`Bearer ${Token}`
+                        Authorizartion:`Bearer ${token}`
             },
         });
         dispatch({type:GET_ALL_CART_ITEM_SUCCESS,payload:data});
@@ -38,7 +38,7 @@ export const findCart =(Token)=>{
             }
         }};
         
-        export const addItemToCart=({Token,itemId,quantity})=>{
+        export const addItemToCart=({token,itemId,quantity})=>{
             return async(dispatch)=>{
                 dispatch({type:ADD_ITEM_TO_CART_REQUEST});
                 try{
@@ -46,7 +46,7 @@ export const findCart =(Token)=>{
                         quantity
                     },{
                         headers:{
-                            Authorizartion:`Bearer ${reqData.Token}`
+                            Authorizartion:`Bearer ${reqData.token}`
                 },
             });
             dispatch({type:ADD_ITEM_TO_CART_SUCCESS,payload:data});
@@ -58,7 +58,7 @@ export const findCart =(Token)=>{
                 }
             }}
             
-            export const updateCartItem=({Token,itemId,quantity})=>{
+            export const updateCartItem=({token,itemId,quantity})=>{
                 return async(dispatch)=>{
                     dispatch({type:UPDATE_CART_ITEM_REQUEST});
                     try{

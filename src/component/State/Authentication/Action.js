@@ -100,4 +100,4 @@ export const logout=()=>async(dispatch)=>{
     } catch (error){
         console.log("error",error)
     }
-}
+};

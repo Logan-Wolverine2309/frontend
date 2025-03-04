@@ -72,7 +72,7 @@ console.log("form values",values)
     // onChange={handleChange}
   >
     <MenuItem value={"ROLE_CUSTOMER"}>Customer</MenuItem>
-    <MenuItem value={"ROLE_RESTAURANT_"}>Restaurant Owner</MenuItem>
+    <MenuItem value={"ROLE_RESTAURANT_OWNER"}>Restaurant Owner</MenuItem>
   </Select>
 
         

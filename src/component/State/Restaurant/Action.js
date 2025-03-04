@@ -39,13 +39,13 @@ DELETE_RESTAURANT_FAILURE,
 } from "./ActionTypes";
 
 
-export const getAllRestaurantAction = (Token) =>{
+export const getAllRestaurantAction = (token) =>{
     return async(dispatch)=>{
         dispatch({type:GET_ALL_RESTAURANT_REQUEST});
         try{
             const {data} = await api.get(`/restaurant`,{
                 headers:{
-                    Authorizartion:`Bearer ${Token}`
+                    Authorizartion:`Bearer ${token}`
     },
     });
     dispatch({type:GET_ALL_RESTAURANT_SUCCESS,payload:data});
@@ -138,7 +138,7 @@ export const deleteRestaurant=(restaurantId, jwt)=>{
                     Authorizartion:`Bearer ${jwt}`,
     },
 });
-dispatch({type:DELETE_RESTAURANT_SUCCESS,payload:restaurantId});
+dispatch({type:DELETE_RESTAURANT_SUCCESS,payload:responce.restaurantId});
         }
         catch(error){
             dispatch({type:DELETE_RESTAURANT_FAILURE,payload:error});

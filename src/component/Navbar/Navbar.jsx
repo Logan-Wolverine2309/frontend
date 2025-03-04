@@ -11,8 +11,8 @@ import { useSelector } from 'react-redux';
 
 
 export const Navbar = () => {
-  const {auth}=useSelector(store=>store)
-  const navigate=useNavigate()
+  const {auth}=useSelector((store)=>store);
+  const navigate=useNavigate();
   const [isUser,setUser]=useState(false)
   const handleAvatarClick=()=>{
     if(auth.user?.role==="ROLE_CUSTOMER")
@@ -59,13 +59,14 @@ export const Navbar = () => {
           
           <div className=''>
 
-          {auth.user? (
-          <Avatar onClick={handleAvatarClick} sx={{ bgcolor: "white", color: pink.A400}}>{auth.user?.fullName[0].toUppercase()}
+          {auth.user ? (
+          <Avatar onClick={handleAvatarClick} sx={{ bgcolor: "white", color: pink.A400}}>
+            {auth.user?.fullName[0].toUpperCase()}
           </Avatar>
           ) :(
           <IconButton onClick={()=>
-          // navigate("/account/login")
-          setUser(!isUser)
+          navigate("/account/login")
+          // setUser(!isUser)
           
            }>
             <Person/>

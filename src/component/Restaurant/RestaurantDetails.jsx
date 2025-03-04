@@ -2,18 +2,17 @@ import { Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typogr
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import MenuCard from './MenuCard';
-import MenuCard_2 from './MenuCard_2';
-import MenuCard_3 from './MenuCard_3';
 import React, { useState } from 'react'
-import MenuCard_4 from './MenuCard_4';
+
 
 
 const categories=[
     "Pizza",
-    "Biriyani",
     "Burger",
-    "Chicken",
-    "Rice"
+    "Pasta",
+    "Sandwich",
+    "Beverages",
+    
 ];
 const foodTypes=[
     {label:"All",value:"all"},
@@ -135,9 +134,6 @@ const RestaurantDetails = () => {
 
       <div className="space-y-5 lg:w[80%] lg:pl-10">
         <MenuCard/>
-        <MenuCard_2/>
-        <MenuCard_3/>
-        <MenuCard_4/>
          
           </div>
     </section>

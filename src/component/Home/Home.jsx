@@ -2,9 +2,6 @@
  import "./Home.css"
 import MultiItemCarousel from './MultiItemCorusel'
 import RestaurantCard from '../Restaurant/RestaurantCard'
-import RestaurantCard_2 from '../Restaurant/RestaurantCard_2'
-import RestaurantCard_3 from '../Restaurant/RestaurantCard_3'
-import RestaurantCard_4 from '../Restaurant/RestaurantCard_4'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllRestaurantAction } from '../State/Restaurant/Action'
 
@@ -13,7 +10,7 @@ import { getAllRestaurantAction } from '../State/Restaurant/Action'
   const Home = () => {
     const dispatch=useDispatch()
     const jwt=localStorage.getItem('jwt')
-    const {restaurant}=useSelector((state)=>state.restaurant)
+    const {restaurant}=useSelector((store)=>store)
     console.log("restaurant",restaurant
     )
 
@@ -45,9 +42,7 @@ import { getAllRestaurantAction } from '../State/Restaurant/Action'
           <h1 className='text2xl font-bold text-gray-400 pb-8'>Order From Our Handpicked Favourites</h1>
           <div className='flex flex-wrap item-start gp-1'>
           <RestaurantCard/>
-          <RestaurantCard_2/>
-          <RestaurantCard_3/>
-          <RestaurantCard_4/>
+          
 
             
             

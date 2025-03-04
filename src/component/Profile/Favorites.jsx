@@ -1,6 +1,5 @@
 import React from 'react'
 import RestaurantCard from '../Restaurant/RestaurantCard'
-import RestaurantCard_2 from '../Restaurant/RestaurantCard_2'
 const Favorites = () => {
   return (
     <div>
@@ -9,7 +8,6 @@ const Favorites = () => {
       <div className="flex flex-wrap justify-center">
 
         <RestaurantCard/>
-        <RestaurantCard_2/>
       </div>
     </div>
   )
