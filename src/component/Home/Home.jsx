@@ -6,16 +6,16 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllRestaurantAction } from '../State/Restaurant/Action'
 
 
- 
+ const restaurants=[1,1,1,1,1]
   const Home = () => {
     const dispatch=useDispatch()
-    const jwt=localStorage.getItem('jwt')
+    const jwt=localStorage.getItem("jwt")
     const {restaurant}=useSelector((store)=>store)
     console.log("restaurant",restaurant
     )
 
     useEffect(()=>{
-     dispatch(getAllRestaurantAction({jwt}))
+     dispatch(getAllRestaurantAction(jwt))
     },[])
    return (
      <div className='pb-10'>
@@ -41,7 +41,13 @@ import { getAllRestaurantAction } from '../State/Restaurant/Action'
          <section className='px-5 lg:px-20 pt-10'>
           <h1 className='text2xl font-bold text-gray-400 pb-8'>Order From Our Handpicked Favourites</h1>
           <div className='flex flex-wrap item-start gp-1'>
-          <RestaurantCard/>
+            {
+              restaurant.restaurants?.map((item)=>(
+                <RestaurantCard item={item}/>
+              ))
+            }
+          
+          
           
 
             

@@ -9,6 +9,7 @@ import { Navbar } from '../Navbar/Navbar'
 import Auth from '../Auth/Auth'
 
 import Search from '../Search/Search'
+import PaymentSuccess from '../PaymentSuccess/paymentsuccess'
 
 const CustomerRoute = () => {
   return (
@@ -21,6 +22,7 @@ const CustomerRoute = () => {
             <Route path='/search' element={<Search/>}/>
             <Route path='/cart' element={<Cart/>}/>
             <Route path='/my-profile/*' element={<Profile/>}/>
+            <Route path='/payment/success/:id*' element={<PaymentSuccess/>}/>
             
       </Routes>
       <Auth/>
