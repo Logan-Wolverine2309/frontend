@@ -11,7 +11,7 @@ import { useSelector } from 'react-redux';
 
 
 export const Navbar = () => {
-  const {auth}=useSelector((store)=>store);
+  const {auth,cart}=useSelector((store)=>store);
   const navigate=useNavigate();
   const [isUser,setUser]=useState(false)
   const handleAvatarClick=()=>{
@@ -41,7 +41,7 @@ export const Navbar = () => {
     
        <div className='lg:mr-10 cursor-pointer flex items-center
         space-x-4'>
-          <li onClick={()=>navigate("/")} className='logo font-semibold text-gray-300 text-2x1'>
+          <li onClick={()=>navigate("/")} className='logo font-semibold text-gray-300 text-2x'>
             <i>FoodSphere</i>
 
           </li>
@@ -75,9 +75,7 @@ export const Navbar = () => {
           <div className=''> 
            
             <IconButton  onClick={()=>navigate("/cart")}>
-              
-            
-            <Badge color="primary" badgeContent={2}>
+            <Badge color="primary" badgeContent={cart.cart?.items?.length} >
               <ShoppingCartIcon sx={{fontSize:"1.5rem"}}/>
               </Badge>
               

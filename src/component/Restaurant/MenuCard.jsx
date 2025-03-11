@@ -1,27 +1,55 @@
 import { Accordion, AccordionDetails, AccordionSummary, Button, Checkbox, FormControlLabel, FormGroup } from '@mui/material'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import React from 'react'
+import React, { useState } from 'react'
+import categorizeIngredients from '../util/categrizeIngredients';
+import { useDispatch } from 'react-redux';
+import { addItemToCart } from '../State/Cart/Action';
 
 
 const demo=[
     {
-        catagory:"Nuts & Seeds",
+        category:"Nuts & Seeds",
         ingredients:["Cashews"]
     },
     {
-        catagory:"Protein",
+        category:"Protein",
         ingredients:["Chicken","Bacon Strips"]
     },
     {
-        catagory:"Bread",
+        category:"Bread",
         ingredients:["Humburger Burn"]
     },
 ]
 
-const MenuCard = () => {
-    const handleCheckBoxChange=(value)=>{
-        console.log("value")
+const MenuCard = ({item}) => {
+  const [selectedIngredients, setSelectedIngredients] = useState([]);
+  const dispatch=useDispatch();
+    const handleCheckBoxChange=(itemName)=>{
+        console.log("value");
+        if(selectedIngredients.includes(itemName)){
+          setSelectedIngredients(selectedIngredients.filter((item)=>item!==itemName))
+      } else {
+          setSelectedIngredients([...selectedIngredients,itemName])
+      }
+  
+    };
+    const handleAddItemToCart=(e)=>{
+      e.prevenDefault();
+      const reqData={
+        token:localStorage.getItem("jwt"),
+        cartItem:{
+        menuItemId:item.id,
+        quantity:1,
+        ingredients:selectedIngredients,
+      }
     }
+      dispatch(addItemToCart(reqData));
+      console.log("reqData",reqData);
+    }
+
+
+    
+        
   return (
     <Accordion>
     <AccordionSummary
@@ -32,14 +60,13 @@ const MenuCard = () => {
           <div className='lg:flex items-center justify-between'>
             <div className="lg:flex items-center lg:gap-5" >
                 <img className='w-[7rem] h-[7rem] object-cover'
-                 src="https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=600"
+                 src={item.images[0]}
                  alt="" />
                  <div className="space-y-1 lg:space-y-5 lg:max-w-2xl">
-                    <p className="font-semibond text-xl">Burger</p>
-                    <p>₹199</p>
+                    <p className="font-semibond text-xl">{item.name}</p>
+                    <p>{item.price}</p>
                     <p className="text-gray-400">
-                      A hamburger or simply burger is a food consisting of fillings--usually a patty of ground meal.
-                        typicaly beef--placed inside a sliced bun or bread roll.
+                        {item.description}
                     </p>
                  </div>
             </div>
@@ -48,19 +75,21 @@ const MenuCard = () => {
         <AccordionDetails>
 
             
-          <form>
+          <form onSubmit={handleAddItemToCart}> 
             <div className="flex gaps-5 flex-wrap">
             {
-                    demo.map((item)=>
+                Object.keys(categorizeIngredients(item.ingredients)).map((category)=>(
                         <div>
-                    <p>{item.catagory}</p>
+                    <p>{category}</p>
             <FormGroup>
-             {item.ingredients.map((item)=> ( 
-             <FormControlLabel control={<Checkbox onChange={()=>handleCheckBoxChange(item)} />} label={item} />))}
+             {categorizeIngredients(item.ingredients)[category].map((item)=> ( 
+             <FormControlLabel key={item.id} control={<Checkbox onChange={()=>handleCheckBoxChange(item.name)} />}
+              label={item.name} />
+            ))}
     
             </FormGroup>  
             </div> 
-              )}
+  ))}
             
              </div>
              <div className="pt-5">

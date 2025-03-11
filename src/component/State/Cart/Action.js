@@ -1,18 +1,19 @@
 
 import { api } from '../../config/api';
-import { ADD_ITEM_TO_CART_FAILURE, ADD_ITEM_TO_CART_REQUEST, ADD_ITEM_TO_CART_SUCCESS, FIND_CART_FAILURE, FIND_CART_REQUEST, FIND_CART_SUCCESS, GET_ALL_CART_ITEM_FAILURE, GET_ALL_CART_ITEM_REQUEST, GET_ALL_CART_ITEM_SUCCESS, UPDATE_CART_ITEM_FAILURE, UPDATE_CART_ITEM_REQUEST, UPDATE_CART_ITEM_SUCCESS } from './ActionTypes';
+import { ADD_ITEM_TO_CART_FAILURE, ADD_ITEM_TO_CART_REQUEST, ADD_ITEM_TO_CART_SUCCESS, CLEARE_CART_FAILURE, CLEARE_CART_REQUEST, CLEARE_CART_SUCCESS, FIND_CART_FAILURE, FIND_CART_REQUEST, FIND_CART_SUCCESS, GET_ALL_CART_ITEM_FAILURE, GET_ALL_CART_ITEM_REQUEST, GET_ALL_CART_ITEM_SUCCESS, REMOVE_CART_ITEM_FAILURE, REMOVE_CART_ITEM_REQUEST, REMOVE_CART_ITEM_SUCCESS, UPDATE_CART_ITEM_FAILURE, UPDATE_CART_ITEM_REQUEST, UPDATE_CART_ITEM_SUCCESS } from './ActionTypes';
 
 export const findCart =(token)=>{
     return async(dispatch)=>{
         dispatch({type:FIND_CART_REQUEST});
         try{
-            const {data} = await api.get(`/cart`,{
+            const response = await api.get(`/api/cart`,{
                 headers:{
                     Authorizartion:`Bearer ${token}`
             },
         });
-        dispatch({type:FIND_CART_SUCCESS,payload:data});
-        console.log("find cart",data);
+        console.log("my cart",response.data);
+        dispatch({type:FIND_CART_SUCCESS,payload:response.data});
+        console.log("find cart",response.data);
         } catch(error){
             console.log("catch error",error);
             dispatch({type:FIND_CART_FAILURE,payload:error});
@@ -46,7 +47,7 @@ export const findCart =(token)=>{
                         quantity
                     },{
                         headers:{
-                            Authorizartion:`Bearer ${reqData.token}`
+                            Authorizartion:`Bearer ${token}`
                 },
             });
             dispatch({type:ADD_ITEM_TO_CART_SUCCESS,payload:data});
@@ -66,7 +67,7 @@ export const findCart =(token)=>{
                             quantity
                         },{
                             headers:{
-                                Authorizartion:`Bearer ${reqData.jwt}`
+                                Authorizartion:`Bearer ${token}`
                     },
                 });
                 dispatch({type:UPDATE_CART_ITEM_SUCCESS,payload:data});
@@ -98,18 +99,18 @@ export const findCart =(token)=>{
 
                 export const clearCartAction=({jwt})=>{
                     return async(dispatch)=>{
-                        dispatch({type:CLEAR_CART_REQUEST});
+                        dispatch({type:CLEARE_CART_REQUEST});
                         try{
                             const {data} = await api.put(`/api/cart/clear`,{
                                 headers:{
                                     Authorizartion:`Bearer ${localStorage.getItem("jwt")}`
                             },
                         });
-                        dispatch({type:CLEAR_CART_SUCCESS,payload:data});
+                        dispatch({type:CLEARE_CART_SUCCESS,payload:data});
                         console.log("clear cart",data);
                         } catch(error){
                             console.log("catch error",error);
-                            dispatch({type:CLEAR_CART_FAILURE,payload:error});
+                            dispatch({type:CLEARE_CART_FAILURE,payload:error});
                             console.log("error",error);
                         }
                     }};

@@ -9,12 +9,12 @@ const MultiItemCarousel = () => {
   const settings = {
     dots: true,
     infinite: true,
-    speed: 1000,
+    speed: 5000,
     slidesToShow: 5,
     slidesToScroll: 1,
     autoplay:true,
-    autoplayspeed:5000,
-    // arrows:false
+    autoplayspeed:10000,
+    arrows:false
     
   };
   return (

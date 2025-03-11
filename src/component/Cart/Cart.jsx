@@ -4,6 +4,9 @@ import CartItem from './CartItem'
 import AddressCard from './AddressCard'
 import { AddLocation } from '@mui/icons-material';
 import { Field, Form, Formik } from 'formik';
+import { useSelector, useDispatch } from 'react-redux';
+import { createOrder } from '../State/Order/Action';
+
 // import * as Yup from "yup"
  export const style = {
   position: 'absolute',
@@ -36,24 +39,41 @@ const Cart = () => {
   }
   const handleOpenAddressModal=()=> setOpen(true);
     const [open, setOpen] = React.useState(false);
+    const {cart,auth}=useSelector(store=>store);
+    const dispatch=useDispatch()
     const handleClose = () => setOpen(false);
     const handleSubmit=(value)=>{
-      console.log(" form value",value)
+      const data={
+        jwt:localStorage.getItem("jwt"),
+        order:{
+          restaurantId:cart.cartItems[0].food?.restaurant.id,
+          deliveryAddress:{
+            fullName:auth.user?.fullName,
+            streetAddress:value.streetAddress,
+            city:value.city,
+            state:value.state,
+            pincode:value.pincode,
+        country:"India",
+      }
     }
+  }
+  dispatch(createOrder(data));
+  console.log("form value", value);
+};
   
   return (
     <>
       <main className='lg:flex justify-between'>
        <section className='lg:w-[30%] space-y-6 lg:main-h-screen pt-10'>
 
-        {items.map((item)=> <CartItem/>)}
+        {cart.cartItems?.map((item)=> <CartItem item={item}/>)}
           <Divider/>
        <div className="billdetails px-5 text-sm">
         <p className="font-extralight py-5">Bill Details</p>
         <div className="space-y-3">
           <div className="flex justify-between text-gray-400">
             <p>Item Total</p>
-            <p>₹600</p>
+            <p>₹{cart.cart.total}</p>
           </div>
 
           <div className="flex justify-between text-gray-400">
@@ -68,7 +88,7 @@ const Cart = () => {
           <Divider/>
           <div className="flex justify-between text-gray-400">
             <p>Total Pay</p>
-            <p>₹654</p>
+            <p>₹{cart.cart?.total+33+21}</p>
           </div>
         </div>
        </div>
