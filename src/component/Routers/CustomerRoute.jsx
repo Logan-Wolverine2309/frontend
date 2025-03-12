@@ -4,10 +4,8 @@ import RestaurantDetails from '../Restaurant/RestaurantDetails'
 import Cart from '../Cart/Cart'
 import Profile from '../Profile/Profile'
 import { Route, Routes } from 'react-router-dom'
-
 import { Navbar } from '../Navbar/Navbar'
 import Auth from '../Auth/Auth'
-
 import Search from '../Search/Search'
 import PaymentSuccess from '../PaymentSuccess/paymentsuccess'
 
@@ -30,6 +28,4 @@ const CustomerRoute = () => {
   )
 }
 
-export default CustomerRoute
-
-// /my-profile/orders
+export default CustomerRoute;

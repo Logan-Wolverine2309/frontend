@@ -1,7 +1,7 @@
 import { CssBaseline, ThemeProvider } from '@mui/material';
 import './App.css';
 import { darkTheme } from './component/Theme/DarkTheme';
-import CustomerRoute from './component/Routers/CustomerRoute';
+import Routers from './component/Routers/Routers';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from './component/State/Authentication/Action';
@@ -23,7 +23,7 @@ function App() {
   <ThemeProvider theme={darkTheme}>
     <CssBaseline/>
     
-     <CustomerRoute/>
+     <Routers/>
 
 </ThemeProvider>
   );
