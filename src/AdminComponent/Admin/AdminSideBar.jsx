@@ -48,7 +48,7 @@ handleClose();
       anchor="left" 
       sx={{zIndex:1, position:"sticky"}}>
 
-                <div className= "w-[50vw] lg:w-[20vw] h-[100vh]  flex flex-col justify-center text-xl gap-8 pt-16">
+                <div className= "w-[50vw] lg:w-[20vw] h-[100vh]  flex flex-col justify-center text-xl gap-8">
                
                   {menu.map((item,i)=><>
                   

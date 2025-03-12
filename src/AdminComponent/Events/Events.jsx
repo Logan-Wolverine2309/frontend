@@ -70,16 +70,6 @@ export const Events = () => {
                 onChange={handleFormChange}
                 />
                 <Grid2>
-                  <Grid2 item xs={12}>
-                    <TextField
-                      name="name"
-                      label="Name"
-                      variant="outlined"
-                      fullWidth
-                      value={formValues.name}
-                      onChange={handleFormChange}
-                    />
-                </Grid2>
 
                 <Grid2 item xs={12}>
                     <TextField
