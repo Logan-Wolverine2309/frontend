@@ -23,49 +23,47 @@ const menu=[
      
   ]
 
-export const AdminSideBar = ({handleClose}) => {
-  const isSmallScreen =useMediaQuery("(max-width:1080px)")
+export const AdminSideBar = ({ open, handleClose }) => {
+  const isSmallScreen =useMediaQuery("(max-width:1080px)");
   const navigate=useNavigate();
   const dispatch=useDispatch();
 
     const handleNavigate=(item)=>{
-navigate(`/admin/restaurants${item.path}`)
-if(item.title==="Logout"){
-  navigate("/")
-dispatch(logout())
-handleClose()
+    if(item.title==="Logout")
+  {
+        dispatch(logout())
+        navigate("/")
+  }
+else
+  navigate(`/admin/restaurants${item.path}`)
+handleClose();
 }
-    }
-  return (
+     return (
     <div>
-      <>
+    
       <Drawer 
-      varient={isSmallScreen?"temporary":"permanent"}
+      variant={isSmallScreen ? "temporary" : "permanent"}
       onClose ={handleClose} 
-      open={true} 
+      open={isSmallScreen ? open : true} 
       anchor="left" 
-      sx={{zIndex:1}}>
+      sx={{zIndex:1, position:"sticky"}}>
 
-                <div className= " w-[30vw] lg:w-[20vw] h-[90vh]  flex flex-col justify-center text-xl space-y-[3.2rem] border:10px bordercolor:[#f1f1f1]">
+                <div className= "w-[50vw] lg:w-[20vw] h-[100vh]  flex flex-col justify-center text-xl gap-8 pt-16">
                
-                  {menu?.map((item,i)=>
-                  <div key={item.title}>
+                  {menu.map((item,i)=><>
+                  
                     <div onClick={()=>handleNavigate(item)} className="px-5 flex items-center gap-5 cursor-pointer">
                       {item.icon}
                       <span>{item.title}</span>
-                    {i!==menu.length-1 && <Divider />}
-                  </div>
+                      </div>
+                    {i!== menu.length-1 && <Divider />}
+                    
+                    </>)}
                   </div>
                   
-                  )}
                   
-                
+                  </Drawer>
                   </div>
-            </Drawer>
-      </>
-    </div>
-    
-
     
   )
 }
