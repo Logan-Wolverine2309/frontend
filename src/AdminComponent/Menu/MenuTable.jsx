@@ -3,10 +3,10 @@ import React from 'react'
 import CreateIcon from '@mui/icons-material/Create';
 import { Delete } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-const orders=[1,1,1,1,1,1,1];
+const orders=[1,1];
 
 export default function MenuTable() {
-  const Navigate = useNavigate()
+  const navigate = useNavigate()
   return (
     <Box>
       <Card className='mt-1'>
@@ -28,7 +28,7 @@ export default function MenuTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders.map((row) => (
+          {orders?.map((row) => (
             <TableRow
               key={row.name}
               sx={{ '&: td, &: th': { border: 8 } }}

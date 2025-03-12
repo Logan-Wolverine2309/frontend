@@ -1,8 +1,10 @@
 import { Box, Card, CardHeader, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React from 'react'
-const orders=[1,1,1,1,1,1,1]
+import { useNavigate } from 'react-router-dom';
+const orders=[1,1];
 
 export default function OrderTable() {
+  const navigate = useNavigate()
   return (
     <Box>
       <Card className='mt-1'>
