@@ -2,7 +2,7 @@ import { Box, Card, CardHeader, IconButton, Modal, Paper, Table, TableBody, Tabl
 import React from 'react'
 import CreateIcon from '@mui/icons-material/Create';
 import CreateFoodCategoryForm from './CreateFoodCategoryForm';
-const orders=[1,1,1,1,1,1,1];
+const orders=[1,1];
 const style = {
   position: 'absolute',
   top: '50%',
@@ -32,7 +32,7 @@ export default function FoodCategoryTable() {
           </IconButton>
         } title={"Food Category"} sx={{pt:5,alignItems:"center"}} />
          <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
+      <Table sx={{ minWidth: 300 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="left"> Id </TableCell>
@@ -43,12 +43,12 @@ export default function FoodCategoryTable() {
           {orders.map((row) => (
             <TableRow
               key={row.name}
-              sx={{ '&: td, &: th': { border: 8 } }}
+              sx={{ '&: td, &: th': { border: 5 } }}
             >
               <TableCell component="th" scope="row">
                 {1}
               </TableCell>
-              <TableCell align="right">{"Name"}</TableCell>
+              <TableCell align="left">{"Name"}</TableCell>
             </TableRow>
           ))}
         </TableBody>

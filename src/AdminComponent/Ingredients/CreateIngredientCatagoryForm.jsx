@@ -13,7 +13,7 @@ const CreateIngredientCategoryForm = () => {
                 id:1
             },
         };
-        console.log(formData);
+        console.log(data);
     };
         const handleInputChange = (e) => {
             const {name,value}=e.target
@@ -29,17 +29,16 @@ const CreateIngredientCategoryForm = () => {
             </h3>
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <TextField fullWidth
-                                label="catagory"
+                                label="Catagory Name"
                                 id="name"
                                 name="categoryname"
                                 varient="outlined"
                                 onChange={handleInputChange}
-                                value={FormData.name}
-                                >
-                    
+                                value={formData.catagoryname}
+                                >               
                     </TextField>
                     <Button variant="contained" type="submit"> 
-                        Create Category 
+                        Create Ingredient Category 
                     </Button>
                 </form>
 

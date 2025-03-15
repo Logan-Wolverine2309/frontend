@@ -1,5 +1,5 @@
 import { AddPhotoAlternate } from '@mui/icons-material'
-import { Button, CircularProgress, Grid2, IconButton, TextField } from '@mui/material'
+import { Button, CircularProgress, Grid, Grid2, IconButton, TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
@@ -20,7 +20,8 @@ const initialValues = {
   instagram:"",
   linkedIn:"",
   facebook:"",
-  openingHours:"Mon-Sun : 9.00 AM - 10.00 PM",
+  openingHours:"",
+  closingHours:"",
   images:[],
 };
 const CreateRestaurantForm = () => {
@@ -48,11 +49,11 @@ const CreateRestaurantForm = () => {
         openingHours:values.openingHours,
         images:values.images,      
       };
-      console.log("data ---",data)
+      console.log("data ---",values)
     },
   });
   const handleImageChange = async(e) => {
-    const file=e.target.files[0];
+    const file = e.target.files[0];
     setUploadImage(true)
     const image = await uploadImageToCloudinary(file)
     console.log("image ---",image)
@@ -71,11 +72,11 @@ const CreateRestaurantForm = () => {
         Add New Restaurant
       </h1>
       <form onSubmit={formik.handleSubmit} className="spy-5">
-        <Grid2 container spacing={5}>
-          <Grid2 className="flex flex-wrap gap-3" item xs={12} lg={6}>
+        <Grid container spacing={5}>
+          <Grid className="flex flex-wrap gap-3" item xs={12}>
               <input
               accept='image/*'
-              id='fileinput'
+              id='fileInput'
               style={{display:"none"}}
               onChange={handleImageChange}
               type='file' />
@@ -109,91 +110,71 @@ const CreateRestaurantForm = () => {
                  </IconButton>
 
               </div>)}
+              
 
             </div>
 
-          </Grid2>
-          <Grid2 item xs={12}>
+          </Grid>
+          
+            <Grid item xs={12}>
             <TextField fullWidth
-            label="Name"
-            id="name"
-            name="name"
-            onChange={formik.handleChange}
-            value={formik.values.name}
-            >
+              id="name"
+              name="name"
+              label="Name"
+              variant="outlined"
+              onChange={formik.handleChange}
+              value={formik.values.name}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <TextField fullWidth              
+              id="description"
+              name="description"
+              label="Description"
+              variant="outlined"
+              onChange={formik.handleChange}
+              value={formik.values.description}
+            />
 
-            </TextField>
-
-          </Grid2>
-          <Grid2 item xs={12}>
+          </Grid>
+          
+          <Grid item xs={12} lg={6}>
             <TextField fullWidth
-            label="description"
-            id="description"
-            name="description"
-            onChange={formik.handleChange}
-            value={formik.values.description}
-            >
-
-            </TextField>
-
-          </Grid2>
-          <Grid2 item xs={12}>
-            <TextField fullWidth
-            label="Cuisine Type"
             id="cuisineType"
             name="cuisineType"
-            varient="outlined"
+            label="Cuisine Type"
+            variant="outlined"
             onChange={formik.handleChange}
             value={formik.values.cuisineType}
             >
 
             </TextField>
 
-          </Grid2>
-          <Grid2 item xs={12}>
-            <TextField fullWidth
-            label="Opening Hours"
-            id="OpeningHours"
-            name="OpeningHours"
-            varient="outlined"
-            onChange={formik.handleChange}
-            value={formik.values.OpeningHours}
-            >
+          </Grid>
+          
 
-            </TextField>
-
-          </Grid2>
-
-          <Grid2 item xs={12}>
-            <TextField fullWidth
-            label="Street Address"
-            id="streetAddress"
-            name="streetAddress"
-            variant="outlined"
-            onChange={formik.handleChange}
-            value={formik.values.streetAddress}
-            >
-
-            </TextField>
-
-          </Grid2>
-
-          <Grid2 item xs={12} lg="4">
-            <TextField fullWidth
-            label="City"
-            id="city"
-            name="city"
-            variant="outlined"
-            onChange={formik.handleChange}
-            value={formik.values.city}
-            >
-
-            </TextField>
-
-          </Grid2>
+                <Grid item xs={12}>
+        <TextField fullWidth
+          id="streetAddress"
+          name="streetAddress"
+          label="Street Address"
+          variant="outlined"
+          onChange={formik.handleChange}
+          value={formik.values.streetAddress}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <TextField fullWidth
+          label="City"
+          id="city"
+          name="city"
+          onChange={formik.handleChange}
+          value={formik.values.city}
+        />
+      </Grid>
 
 
-          <Grid2 item xs={12}>
+          <Grid item xs={12}>
             <TextField fullWidth
             label="State Province"
             id="stateProvince"
@@ -205,8 +186,8 @@ const CreateRestaurantForm = () => {
 
             </TextField>
 
-          </Grid2>
-          <Grid2 item xs={12} lg="4">
+          </Grid>
+          <Grid item xs={12} lg={6}>
             <TextField fullWidth
             label="Postal Code"
             id="postalCode"
@@ -218,9 +199,9 @@ const CreateRestaurantForm = () => {
 
             </TextField>
 
-          </Grid2>
+          </Grid>
 
-          <Grid2 item xs={12} lg="4">
+          <Grid item xs={12} lg={6}>
             <TextField fullWidth
             label="Country"
             id="country"
@@ -232,9 +213,9 @@ const CreateRestaurantForm = () => {
 
             </TextField>
 
-          </Grid2>
+          </Grid>
 
-          <Grid2 item xs={12} lg={6}>
+          <Grid item xs={12} lg={6}>
             <TextField fullWidth
             label="Email"
             id="email"
@@ -246,9 +227,9 @@ const CreateRestaurantForm = () => {
 
             </TextField>
 
-          </Grid2>
+          </Grid>
 
-          <Grid2 item xs={12} lg={6}>
+          <Grid item xs={12} lg={6}>
             <TextField fullWidth
             label="Phone Number"
             id="mobile"
@@ -260,9 +241,37 @@ const CreateRestaurantForm = () => {
 
             </TextField>
 
-          </Grid2>
+          </Grid>
 
-          <Grid2 item xs={12} lg={6}>
+          <Grid item xs={12}>
+            <TextField fullWidth
+            label="Opening Hours"
+            id="openingHours"
+            name="openingHours"
+            variant="outlined"
+            onChange={formik.handleChange}
+            value={formik.values.openingHours}
+            >
+
+            </TextField>
+
+          </Grid>
+
+          <Grid  item xs={12}>
+            <TextField fullWidth
+            label="Closing Hours"
+            id="closingHours"
+            name="closingHours"
+            variant="outlined"
+            onChange={formik.handleChange}
+            value={formik.values.closingHours}
+            >
+
+            </TextField>
+
+          </Grid>
+
+          <Grid item xs={6}>
             <TextField fullWidth
             label="X(Twitter)"
             id="X"
@@ -274,9 +283,9 @@ const CreateRestaurantForm = () => {
 
             </TextField>
 
-          </Grid2>
+          </Grid>
 
-          <Grid2 item xs={12} lg={6}>
+          <Grid item xs={12} lg={6}>
             <TextField fullWidth
             label="Instagram"
             id="instagram"
@@ -288,13 +297,14 @@ const CreateRestaurantForm = () => {
 
             </TextField>
 
-          </Grid2>
-        </Grid2>
-        <Button varient="contained" color="primary" type="submit">Create Restaurent</Button>
+          </Grid>
+        </Grid>
+        <br/>
+        <Button variant="contained" color="primary" type="submit">Create Restaurant</Button>
       </form>
      </div>
     </div>
   )
 }
 
-export default CreateRestaurantForm
+export default CreateRestaurantForm;

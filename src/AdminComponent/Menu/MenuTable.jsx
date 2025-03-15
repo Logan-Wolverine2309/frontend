@@ -3,18 +3,33 @@ import React from 'react'
 import CreateIcon from '@mui/icons-material/Create';
 import { Delete } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-const orders=[1,1];
+
+const orders=[{id: 1}, {id: 2}, {id: 3}];
+ 
 
 export default function MenuTable() {
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
+   const [ open, setOpen] = React.useState(false);
+    const handleOpen = () =>{
+       setOpen(true);
+    };
+
+    const handleAddMenuClick = () => {
+      navigate("/admin/restaurants/add-menu");
+    };
+
   return (
     <Box>
-      <Card className='mt-1'>
-        <CardHeader  action={
-          <IconButton onClick={("./admin/restaurants/add-menu")} aria-label="settings">
+      <Card className='mt-1' >
+        <CardHeader 
+        action={
+            <IconButton onClick={handleAddMenuClick} aria-label="settings">
             <CreateIcon />
           </IconButton>
-        } title={"Menu"} sx={{pt:5,alignItems:"center"}} />
+        } 
+        title= { "Menu" }
+        sx={{pt:5,alignItems:"center"}} />
          <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>
@@ -28,21 +43,21 @@ export default function MenuTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {orders?.map((row) => (
+          {orders.map((row) => (
             <TableRow
-              key={row.name}
-              sx={{ '&: td, &: th': { border: 8 } }}
-            >
+              key={row.id}
+              sx={{ '&: td, &: th': { border: 8 } }}>
               <TableCell component="th" scope="row">
                 {1}
               </TableCell>
               <TableCell align="right">{"image"}</TableCell>
-              <TableCell align="right">{"Shruti@gmail.com"}</TableCell>
-              <TableCell align="right">{"price"}</TableCell>
-              <TableCell align="right">{"Biriyani"}</TableCell>
+              <TableCell align="right">{"Cheese"}</TableCell>
+              <TableCell align="right">{"$150"}</TableCell>
+              <TableCell align="right">{"Biryani"}</TableCell>
               <TableCell align="right"><IconButton>
                 <Delete />
-                </IconButton></TableCell>
+                </IconButton>
+                </TableCell>
             </TableRow>
           ))}
         </TableBody>
@@ -50,5 +65,5 @@ export default function MenuTable() {
     </TableContainer>
       </Card>
     </Box>
-  )
+  );
 }

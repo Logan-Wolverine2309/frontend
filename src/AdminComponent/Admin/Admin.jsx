@@ -7,7 +7,7 @@ import { Menu } from '../Menu/Menu'
 import FoodCategory  from '../FoodCategory/FoodCategory'
 import Ingredients from '../Ingredients/Ingredients'
 import { Events } from '../Events/Events'
-import { RestaurantDetails } from './RestaurantDetails'
+import RestaurantDetails from './RestaurantDetails'
 import CreateMenuForm from '../Menu/CreateMenuForm'
 
 
@@ -27,10 +27,10 @@ export const Admin = () => {
                         <Route path='/' element={<RestaurantDashboard/>}/>
                         <Route path='/orders' element={<Orders/>}/>
                         <Route path='/menu' element={<Menu/>}/>
-                        <Route path='/Catagory' element={<FoodCategory/>}/>
+                        <Route path='/category' element={<FoodCategory/>}/>
                         <Route path='/ingredients' element={<Ingredients/>}/>
                         <Route path='/event' element={<Events/>}/>
-                        <Route path='/restaurant-details' element={<RestaurantDetails/>}/>
+                        <Route path='/details' element={<RestaurantDetails/>}/>
                         <Route path='/add-menu' element={<CreateMenuForm />}/>
                     </Routes>
                 </div>

@@ -1,4 +1,4 @@
-import { Box, Button, Grid2, Modal, TextField } from '@mui/material'
+import { Box, Button, Grid, Grid2, Modal, TextField } from '@mui/material'
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
@@ -29,22 +29,21 @@ export const Events = () => {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-  const [formValues,setFormValues] = React.useState(initialValues)
+  const [formValues,setFormValues] = React.useState(initialValues);
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit ", formValues);
-    setFormValues(initialValues)
+    setFormValues(initialValues);
 
-  }
+  };
   const handleFormChange = (e) =>{
     setFormValues({...formValues, [e.target.name]:e.target.value})
   }
   const handleDateChange = (date,dateType) =>{
-    const formatedDate = dayjs(date).format("MM-DD-YYYY hh:mm A");
-    setFormValues({...formValues,[dateType]:formatedDate})
+    setFormValues({...formValues,[dateType]: date});
 
-  }
+  };
   return (
     <div>
       <div className="p-5">
@@ -59,28 +58,29 @@ export const Events = () => {
       >
         <Box sx={style}>
           <form onSubmit={handleSubmit}>
-            <Grid2 container spacing={3}>
-              <Grid2 item xs={12}>
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
                 <TextField
                 name="image"
                 label="Image URL"
                 variant="outlined"
                 fullWidth
                 value={formValues.image}
-                onChange={handleFormChange}
-                />
-                <Grid2>
+                onChange={handleFormChange}/>
+                <Grid>
+              <br/>
 
-                <Grid2 item xs={12}>
+                <Grid item xs={12}>
                     <TextField
                       name="location"
                       label="Location"
                       variant="outlined"
                       fullWidth
-                      value={formValues.image}
+                      value={formValues.location}
                       onChange={handleFormChange}
                     />
-                </Grid2>
+                </Grid>
+                <br/>
 
                 <Grid2 item xs={12}>
                     <TextField
@@ -88,10 +88,11 @@ export const Events = () => {
                       label="Event Name"
                       variant="outlined"
                       fullWidth
-                      value={formValues.eventName}
+                      value={formValues.name}
                       onChange={handleFormChange}
                     />
                 </Grid2>
+                <br/>
 
                 <Grid2 item xs={12}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -100,14 +101,14 @@ export const Events = () => {
                       label="Start Date and Time"
                       value={formValues.startedAt}
                       onChange={(newValue) =>
-                        handleDateChange(newValue, "startedAt")
-                      }
-                      inputFormat="MM/dd/yyyy hh:mm a"
+                        handleDateChange(newValue, "startedAt")}
+                      inputFormat="MM/dd/yyyy hh:mm A"
                       className="w-full"
                       sx={{ width: "100%" }}
                     />
                     </LocalizationProvider>
                 </Grid2>
+                <br/>
 
                 <Grid2 item xs={12}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -118,16 +119,16 @@ export const Events = () => {
                       onChange={(newValue) =>
                         handleDateChange(newValue, "endsAt")
                       }
-                      inputFormat="MM/dd/yyyy hh:mm a"
+                      inputFormat="MM/dd/yyyy hh:mm A"
                       className="w-full"
                       sx={{ width: "100%" }}
                     />
                     </LocalizationProvider>
                 </Grid2>
 
-              </Grid2>
-            </Grid2>
-            </Grid2>
+              </Grid>
+            </Grid>
+            </Grid>
           </form>
         </Box>
       </Modal>

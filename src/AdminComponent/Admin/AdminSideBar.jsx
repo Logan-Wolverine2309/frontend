@@ -15,7 +15,7 @@ const menu=[
     {title:"Dashboard",icon:<Dashboard/>, path:"/"},
     {title:"Orders",icon:<ShoppingBag/>, path:"/orders"},
     {title:"Menu",icon:<ShopTwoIcon/>, path:"/menu"},
-    {title:"Food Category",icon:<CategoryIcon/>, path:"/Category"},
+    {title:"Food Category",icon:<CategoryIcon/>, path:"/category"},
     {title:"Ingredients",icon:<FastfoodIcon/>, path:"/ingredients"},
     {title:"Events",icon:<EventIcon/>, path:"/event"},
     {title:"Details",icon:<AdminPanelSettingsIcon/>, path:"/details"},
@@ -40,7 +40,7 @@ handleClose();
 }
      return (
     <div>
-    
+    <>
       <Drawer 
       variant={isSmallScreen ? "temporary" : "permanent"}
       onClose ={handleClose} 
@@ -63,6 +63,7 @@ handleClose();
                   
                   
                   </Drawer>
+                  </>
                   </div>
     
   )

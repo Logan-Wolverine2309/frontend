@@ -16,9 +16,9 @@ export const RestaurantDetails = () => {
         <h3 className='text-xl lg:text-4xl text-center font-bold p-3'> The Great Indian Restaurant </h3> 
           <div>
             <Button 
-            className="py-[1rem] px-[2rem]" onClick={handleRestuarantStatus} size="medium"
-            variant="contained" color={true?"primary":"error"}>
-              {true?"close":"open"}
+            className="py-[1rem] px-[2rem]" onClick={handleRestuarantStatus} size="large"
+            variant="contained" color={true ? "primary" : "error"}>
+              {true ? "close" : "open"}
             </Button>
           </div>
       </div>
@@ -65,8 +65,9 @@ export const RestaurantDetails = () => {
                     <p className="w-48">Status</p>
                     <p className="text-gray-200">
                     <span className="pr-5">---</span>
-                    {true?<span className="px-5 py-2 rounded-full bg-green-400 text-gray-900"> Open </span>:
-                    <span className="px-5 py-2 rounded-full bg-red-400 text-gray-900"> Closed </span>}
+                    {true?<span className="px-5 py-2 rounded-full bg-green-400 text-gray-900"> 
+                      Open </span>:<span className="px-5 py-2 rounded-full bg-red-400 text-gray-900">
+                       Close </span>}
                     </p>
                   </div>
                 </div>

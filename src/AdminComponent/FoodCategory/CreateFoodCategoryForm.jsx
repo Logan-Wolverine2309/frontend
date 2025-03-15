@@ -36,6 +36,17 @@ const CreateFoodCategoryForm = () => {
                                 >
                     
                     </TextField>
+
+                    <TextField fullWidth
+                                label="Restaurant Id"
+                                id="restaurantId"
+                                name="restaurantId"
+                                varient="outlined"
+                                onChange={handleInputChange}
+                                value={FormData.restaurantId}
+                                >
+                    
+                    </TextField>
                     <Button variant="contained" type="submit"> 
                         Create Category 
                     </Button>

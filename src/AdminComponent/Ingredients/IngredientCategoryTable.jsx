@@ -22,7 +22,7 @@ export default function IngredientCategoryTable() {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
   return (
-    <Box>
+  <Box>
       <Card className='mt-1'>
         <CardHeader  action={
           <IconButton  onClick={handleOpen} aria-label="settings">
@@ -59,7 +59,7 @@ export default function IngredientCategoryTable() {
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description">
-        <Box sx={Style}>
+        <Box sx={style}>
           <CreateIngredientCategoryForm />
         </Box>
       </Modal>
