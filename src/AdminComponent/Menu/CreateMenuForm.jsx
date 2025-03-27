@@ -1,9 +1,11 @@
 import { AddPhotoAlternate } from '@mui/icons-material'
-import { Box, Button, Chip, CircularProgress, FormControl, Grid, Grid2, IconButton, InputLabel, MenuItem, Modal, OutlinedInput, Select, TextField } from '@mui/material'
+import { Box, Button, Chip, CircularProgress, FormControl,  IconButton, InputLabel, MenuItem,  OutlinedInput, Select, TextField } from '@mui/material'
 import { useFormik } from 'formik'
 import React, { useState } from 'react'
 import CloseIcon from '@mui/icons-material/Close';
 import { uploadImageToCloudinary } from '../util/UploadToCloudinary';
+import { Grid } from '@mui/material';
+
 
 const initialValues = {
   name: "",

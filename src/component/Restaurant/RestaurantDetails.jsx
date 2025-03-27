@@ -1,4 +1,4 @@
-import { Divider, FormControl, FormControlLabel, Grid, Radio, RadioGroup, Typography } from '@mui/material'
+import { Divider, FormControl, FormControlLabel,  Radio, RadioGroup, Typography } from '@mui/material'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import MenuCard from './MenuCard';
@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { getRestaurantById, getRestaurantCategory} from '../State/Restaurant/Action';
 import { getMenuItemsByRestaurantId } from '../State/Menu/Action';
+import { Grid } from '@mui/material';
 
 
 const foodTypes=[

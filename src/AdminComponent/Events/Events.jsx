@@ -1,8 +1,10 @@
-import { Box, Button, Grid, Grid2, Modal, TextField } from '@mui/material'
+import { Box, Button,  Modal, TextField } from '@mui/material'
 import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import dayjs from 'dayjs';
 import React from 'react'
+import { Grid } from '@mui/material';
+
 
 const style = {
   position: 'absolute',
@@ -82,7 +84,7 @@ export const Events = () => {
                 </Grid>
                 <br/>
 
-                <Grid2 item xs={12}>
+                <Grid item xs={12}>
                     <TextField
                       name="name"
                       label="Event Name"
@@ -91,10 +93,10 @@ export const Events = () => {
                       value={formValues.name}
                       onChange={handleFormChange}
                     />
-                </Grid2>
+                </Grid>
                 <br/>
 
-                <Grid2 item xs={12}>
+                <Grid item xs={12}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DateTimePicker
                       renderInput={(props)=> <TextField {...props}/>}
@@ -107,10 +109,10 @@ export const Events = () => {
                       sx={{ width: "100%" }}
                     />
                     </LocalizationProvider>
-                </Grid2>
+                </Grid>
                 <br/>
 
-                <Grid2 item xs={12}>
+                <Grid item xs={12}>
                     <LocalizationProvider dateAdapter={AdapterDayjs}>
                       <DateTimePicker
                       renderInput={(props)=> <TextField {...props}/>}
@@ -124,7 +126,7 @@ export const Events = () => {
                       sx={{ width: "100%" }}
                     />
                     </LocalizationProvider>
-                </Grid2>
+                </Grid>
 
               </Grid>
             </Grid>
