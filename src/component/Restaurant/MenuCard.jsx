@@ -6,20 +6,6 @@ import { useDispatch } from 'react-redux';
 import { addItemToCart } from '../State/Cart/Action';
 
 
-const demo=[
-    {
-        category:"Nuts & Seeds",
-        ingredients:["Cashews"]
-    },
-    {
-        category:"Protein",
-        ingredients:["Chicken","Bacon Strips"]
-    },
-    {
-        category:"Bread",
-        ingredients:["Humburger Burn"]
-    },
-]
 
 const MenuCard = ({item}) => {
   const [selectedIngredients, setSelectedIngredients] = useState([]);

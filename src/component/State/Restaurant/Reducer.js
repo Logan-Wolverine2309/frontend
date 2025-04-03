@@ -3,7 +3,6 @@ import * as actionTypes from './ActionTypes';
 const initialState = {
     restaurant: [],
     usersRestaurant:null,
-    restaurant: null,
     loading: false,
     error: null,
     event: [],

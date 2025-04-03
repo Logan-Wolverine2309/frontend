@@ -7,6 +7,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getUser } from './component/State/Authentication/Action';
 import { findCart } from './component/State/Cart/Action';
 import { getRestaurantById } from './component/State/Restaurant/Action';
+import { join } from "path-browserify";
+
+import process from "process";
+window.process = process;
 
 
 

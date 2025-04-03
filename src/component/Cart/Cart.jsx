@@ -34,7 +34,6 @@ import { Grid } from '@mui/material';
 // city:Yup.string().required("city is required")
 // })
 
-const items=[1];
 const Cart = () => {
   const createOrderUsingSelectedAddress = ()=> {
 

@@ -61,18 +61,7 @@ const initialState = {
                                     menuItems: action.payload,
                                 };
                                 
-                                case actionTypes.CREATE_MENU_ITEM_FAILURE:
-                                    case actionTypes.GET_MENU_ITEM_BY_RESTAURANT_ID_FAILURE:
-                                    case actionTypes.DELETE_MENU_ITEM_FAILURE:
-                                    case actionTypes.SEARCH_MENU_ITEM_FAILURE:
-                                    case actionTypes.UPDATE_MENU_ITEM_AVAILABILITY_FAILURE:
-                                        return {
-                                            ...state,
-                                            loading: false,
-                                            error: action.payload,
-                                            message: null,
-                                        };
-       
+                               
         default:
             return state;
     }

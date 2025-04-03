@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { createCategoryAction } from "../../component/State/Restaurant/Action";
 
 const CreateFoodCategoryForm = () => {
-    const {restaurant} = useSelector((store) => store);
+    const {} = useSelector((store) => store);
   const dispatch = useDispatch()
 
     const [formData, setFormData] = useState({

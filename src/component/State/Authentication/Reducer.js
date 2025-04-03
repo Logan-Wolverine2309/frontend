@@ -68,17 +68,7 @@ export const authReducer = (state = initialState, action) => {
 
                             case LOGOUT:
                                 return initialState;
-                            case REGISTER_FAILURE:
-                                case LOGIN_FAILURE:
-                                case GET_USER_FAILURE:
-                                case ADD_TO_FAVOURITE_FAILURE:
                                         
-                                    return {
-                                        ...state,
-                                        isLoading:false,
-                                        error:action.payload,
-                                        success:null
-                                    };
         default:
             return state;
     }

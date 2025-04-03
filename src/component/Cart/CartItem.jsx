@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { removeCartItem, updateCartItem } from '../State/Cart/Action';
 
 const CartItem = (item) => {
-    const {auth,cart}=useSelector((store)=>store);
+    const {auth}=useSelector((store)=>store);
     const navigate = useNavigate();
     const dispatch = useDispatch()
     const jwt=localStorage.getItem("jwt")
